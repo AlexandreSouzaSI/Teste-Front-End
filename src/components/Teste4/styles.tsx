@@ -73,7 +73,15 @@ export const Result4 = styled.div`
       flex-direction: column;
       justify-content: space-evenly;
 
+      div {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+      }
 
+      label {
+
+      }
     }
   }
 `

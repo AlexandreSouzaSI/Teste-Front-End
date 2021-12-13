@@ -5,21 +5,53 @@ import veiculo1 from '../../assets/veiculo.png'
 import { useState } from 'react';
 
 
-interface Veiculo {
-  Modelo: string;
-  Anofabricação: Date;
-  QuantidadePortas: number;
-  Marca: string;
-}
-
-interface Moto extends Veiculo {
-    Rodas: number;
-    Passageiros: number;
-}
+// interface Veiculo {
+//   Modelo: string;
+//   Anofabricação: string;
+//   QuantidadePortas: number;
+//   Marca: string;
+// }
   
+// class Veiculos implements Veiculo {
+//   Modelo: string;
+//   QuantidadePortas: number;
+//   Marca: string;
+//   Anofabricação: string;
+//   constructor(Modelo: string, AnoFabricação: string, QuantidadePortas: number, Marca: string){
+//     this.Modelo = Modelo;
+//     this.Anofabricação = AnoFabricação;
+//     this.QuantidadePortas = QuantidadePortas;
+//     this.Marca = Marca;
+//   }
+// }
+
+// class Moto extends Veiculos {
+//   Rodas: number;
+//   Passageiros: number;
+//   constructor(Rodas: number, Passageiros: number){
+//     super(this.Modelo, this.QuantidadePortas, this.Marca, this.Anofabricação);
+//     this.Rodas = Rodas;
+//     this.Passageiros = Passageiros;
+//   }
+// }
+
+// class Carro extends Veiculos {
+//   Modelo: string;
+//   Anofabricação: string;
+//   QuantidadePortas: number;
+//   Marca: string;
+//   constructor(Modelo: string, AnoFabricação: string, QuantidadePortas: number, Marca: string){
+//     super(Modelo, this.Anofabricação, QuantidadePortas, Marca);
+//     this.Modelo = Modelo;
+//     this.Anofabricação = AnoFabricação;
+//     this.QuantidadePortas = QuantidadePortas;
+//     this.Marca = Marca;
+//   }
+// }
   
 export const Teste3 = () => {
   const [veiculo, setVeiculo] = useState("car")
+  
 
   function handleCar() {
     setVeiculo("car")

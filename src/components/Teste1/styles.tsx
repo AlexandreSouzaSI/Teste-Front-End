@@ -51,7 +51,9 @@ export const Resolucao1 = styled.div`
     margin-top: 50px;
     padding: 20px;
     border-radius: 5px;
-    border: 1px solid #e0e0e0;
+    border: 2.5px solid #e0e0e0;
+    background-color: #B4C5E4;
+
   }
 
   button {
@@ -99,5 +101,5 @@ export const Resposta1 = styled.div`
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: center;
-  border: 1px solid #e0e0e0;
+  border: 1px solid #2B4141;
 `

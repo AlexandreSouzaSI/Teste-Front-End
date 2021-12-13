@@ -55,12 +55,12 @@ export const Teste4 = () => {
             {/* {cepFinal.map((post) => (
               // @ts-ignore 
             <div key={post.cep}>
-              ////<label>Rua: {post.logradouro}</label>
+              <label>Rua: {post.logradouro}</label>
               <label>Bairro: {post.bairro}</label>
               <label>Cidade: {post.localidade}</label>
               <label>Estado: {post.uf}</label>
             </div> 
-            ))}*/}
+            ))} */}
           </div>
         </div>
       </Result4>

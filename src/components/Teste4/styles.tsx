@@ -12,27 +12,27 @@ export const ContainerTeste4 = styled.div`
 export const Result4 = styled.div`
   width: 70%;
   height: 100%;
-  padding: 20px;
   text-align: center;
   font-family: 'Times New Roman', serif;
   display: flex;
   flex-direction: column;
   justify-content: start;
-  margin-top: 100px;
+  margin-top: 10px;
 
   span {
     width: 90%;
     font-size: 30px;
     padding: 20px;
     border-radius: 5px;
-    border: 1px solid #e0e0e0;
+    border: 2.5px solid #e0e0e0;
+    background-color: #B4C5E4;
   }
 
   button {
     width: 200px;
     height: 40px;
     color: #fff;
-    margin-top: 20px;
+    margin-top: 5px;
     border-radius: 5px;
     cursor: pointer;
     justify-content: center;
@@ -50,7 +50,7 @@ export const Result4 = styled.div`
     flex-direction: row;
     width: 100%;
     height: 75%;
-    border: 1px solid #f1f1f1;
+    border: 1px solid #2B4141;
     
     div#inputsCep {
       width: 23.4%;

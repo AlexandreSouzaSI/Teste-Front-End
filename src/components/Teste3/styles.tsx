@@ -119,6 +119,7 @@ export const TableCar = styled.div`
   width: 100%;
   height: 50%;
   display: flex;
+  margin-top: 50px;
   flex-direction: column;
 
   div#cabecalho {
@@ -126,7 +127,7 @@ export const TableCar = styled.div`
     flex-direction: row;
     justify-content: space-evenly;
     align-items: center;
-    border: 1px solid #f1f1f1;
+    border: 1px solid #2B4141;
     width: 100%;
     height: 7%;
 
@@ -135,7 +136,7 @@ export const TableCar = styled.div`
       width: 25%;
       height: 100%;
 
-      border: 1px solid #f1f1f1;
+      border: 1px solid #2B4141;
     }
   }
 
@@ -144,7 +145,7 @@ export const TableCar = styled.div`
     flex-direction: row;
     justify-content: space-evenly;
     align-items: center;
-    border: 1px solid #f1f1f1;
+    border: 1px solid #2B4141;
     width: 100%;
     height: 7%;
 
@@ -153,7 +154,7 @@ export const TableCar = styled.div`
       width: 25%;
       height: 100%;
 
-      border: 1px solid #f1f1f1;
+      border: 1px solid #2B4141;
     }
   }
 `

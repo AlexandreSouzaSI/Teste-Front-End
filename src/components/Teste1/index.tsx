@@ -40,7 +40,7 @@ export const Teste1 = () => {
       </Desafio1>
 
       <Resolucao1>
-        <span>Nesse desafio você escolhera 2 numeros, que serão usados como ponto inicial e final, nesse intervalo entre os 2 numeros, todos os Palíndromos serão mostrados.</span>
+        <span>Nesse desafio você escolhera 2 numeros, que serão usados como ponto inicial e final, no intervalo entre os 2 numeros, todos os Palíndromos serão mostrados.</span>
         <Inputs>
           <input type="text" placeholder="Informe o primeiro numero" onChange={(e) => setNumber1(e.target.value)}/>
           <input type="text" placeholder="Informe o segundo numero" onChange={(e) => setNumber2(e.target.value)}/>

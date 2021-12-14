@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { layout } from "styled-system";
 
 export const ContainerTeste4 = styled.div`
   width: 100%;
@@ -6,7 +7,7 @@ export const ContainerTeste4 = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
-  margin-top: 40px;
+  padding: 0px 20px;
 `
 
 export const Result4 = styled.div`
@@ -26,6 +27,7 @@ export const Result4 = styled.div`
     border-radius: 5px;
     border: 2.5px solid #e0e0e0;
     background-color: #B4C5E4;
+    ${layout}
   }
 
   button {
@@ -44,7 +46,7 @@ export const Result4 = styled.div`
     }
   }
 
-  div#listaCpf {
+  div#listaCep {
     display: flex;
     padding: 10px;
     flex-direction: row;
@@ -67,23 +69,35 @@ export const Result4 = styled.div`
     }
 
     div#infoCep {
-      height: 100%;
       width: 100%;
+      height: 100%;
       display: flex;
+      padding-top: 65px;
       flex-direction: column;
-      justify-content: space-evenly;
-
-      div {
-        display: flex;
-        flex-direction: row;
-        justify-content: space-around;
-      }
+      text-align: center;
 
       label {
-
+        font-weight: bold;
       }
-    }
+
+      div#informacoes {
+        display: flex;
+        width: 100%;
+        height: 10%;
+        margin-bottom: 30px;
+        font-size: 25px;
+        flex-direction: row;
+        justify-content: space-around;
+        justify-items: center;
+        text-align: center;
+      }
+    } 
   }
+`
+export const CepInfo = styled.p`
+  font-size: 25px;
+  margin: 0;
+  margin-left: -40px;
 `
 
 export const Inputs = styled.div`

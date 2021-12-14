@@ -2,7 +2,7 @@ import { ContainerTeste2, Desafio2, Informacao, InfoValores, Inputs, Resposta2, 
 
 // @ts-ignore 
 import caixa from '../../assets/caixa.png'
-import { useEffect, useState } from "react"
+import { useState } from "react"
 
 
 export const Teste2 = () => {

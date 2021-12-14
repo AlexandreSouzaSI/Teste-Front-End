@@ -1,57 +1,74 @@
-import { ContainerTeste3, Desafio3, Inputs, Result3, TableCar } from "./styles"
+import { ContainerTeste3, Desafio3, Inputs, Result3, Salvar, TableCar } from "./styles"
 
 // @ts-ignore 
 import veiculo1 from '../../assets/veiculo.png'
 import { useState } from 'react';
 
 
-// interface Veiculo {
-//   Modelo: string;
-//   Anofabricação: string;
-//   QuantidadePortas: number;
-//   Marca: string;
-// }
-  
-// class Veiculos implements Veiculo {
-//   Modelo: string;
-//   QuantidadePortas: number;
-//   Marca: string;
-//   Anofabricação: string;
-//   constructor(Modelo: string, AnoFabricação: string, QuantidadePortas: number, Marca: string){
-//     this.Modelo = Modelo;
-//     this.Anofabricação = AnoFabricação;
-//     this.QuantidadePortas = QuantidadePortas;
-//     this.Marca = Marca;
-//   }
-// }
+class Veiculo {
+  Modelo?: string;
+  Anofabricação?: string;
+  Marca?: string;
+  constructor(Modelo: string, Anofabricação: string, Marca: string){
+    this.Marca = Marca;
+    this.Anofabricação = Anofabricação;
+    this.Modelo = Modelo
+  }
+}
 
-// class Moto extends Veiculos {
-//   Rodas: number;
-//   Passageiros: number;
-//   constructor(Rodas: number, Passageiros: number){
-//     super(this.Modelo, this.QuantidadePortas, this.Marca, this.Anofabricação);
-//     this.Rodas = Rodas;
-//     this.Passageiros = Passageiros;
-//   }
-// }
+class Carro extends Veiculo {
+  QuantidadePortas?: string;
+  constructor(Modelo: string, Anofabricação: string, Marca: string, QuantidadePortas: string){
+    super(Modelo, Anofabricação, Marca)
+    this.QuantidadePortas = QuantidadePortas
+  }
+}
 
-// class Carro extends Veiculos {
-//   Modelo: string;
-//   Anofabricação: string;
-//   QuantidadePortas: number;
-//   Marca: string;
-//   constructor(Modelo: string, AnoFabricação: string, QuantidadePortas: number, Marca: string){
-//     super(Modelo, this.Anofabricação, QuantidadePortas, Marca);
-//     this.Modelo = Modelo;
-//     this.Anofabricação = AnoFabricação;
-//     this.QuantidadePortas = QuantidadePortas;
-//     this.Marca = Marca;
-//   }
-// }
-  
+class Moto extends Veiculo {
+  Rodas?: string;
+  QuantidadePassageiros?: string;
+  constructor(Modelo: string, Anofabricação: string, Marca: string, QuantidadePassageiros: string, Rodas: string){
+    super(Modelo, Anofabricação, Marca);
+    this.QuantidadePassageiros = QuantidadePassageiros;
+    this.Rodas = Rodas
+  }
+}
+
+
 export const Teste3 = () => {
   const [veiculo, setVeiculo] = useState("car")
+  const [moto, setMoto] = useState<Moto[]>([])
+  const [car, setCar] = useState<Carro[]>([])
+  const [modelo, setModelo] = useState("")
+  const [anoFabricacao, setAnoFabricacao] = useState("")
+  const [marca, setMarca] = useState("")
+  const [rodas, setRodas] = useState("")
+  const [passageiro, setPassageiro] = useState("")
+  const [quantidadePortas, setQuantidadePortas] = useState("")
   
+  function handleSalvar() {
+
+    if(veiculo === "car"){
+      const Carro = [
+        { "Modelo": modelo },
+        { "Marca": marca },
+        { "Anofabricação": anoFabricacao },
+        { "quantidadePortas": quantidadePortas },
+      ]
+      setCar(Carro)
+      console.log(car)
+    } else if (veiculo !== "car"){
+    const Veiculos = [
+      { "Modelo": modelo },
+      { "Marca": marca },
+      { "Anofabricação": anoFabricacao },
+      { "Rodas": rodas },
+      { "QuantidadePassageiros": passageiro }
+    ]
+    setMoto(Veiculos)
+    console.log(moto)
+  }
+}
 
   function handleCar() {
     setVeiculo("car")
@@ -74,21 +91,24 @@ export const Teste3 = () => {
         </div>
         {veiculo === "car" ? 
         <Inputs>
-          <div><label>Modelo: </label> <input type="text" placeholder="Informe o modelo" /></div>
-          <div><label>Ano de fabricação: </label> <input type="text" placeholder="Informe o Ano de fabricação" /></div>
-          <div><label>Quantidade de Portas: </label> <input type="text" placeholder="Informe a quantidade de portas" /></div>
-          <div><label>Marca: </label> <input type="text" placeholder="Informe a marca" /></div>
+          <div><label>Modelo: </label> <input type="text" placeholder="Informe o modelo" onChange={(e) => setModelo(e.target.value)}/></div>
+          <div><label>Ano de fabricação: </label> <input type="text" placeholder="Informe o Ano de fabricação" onChange={(e) => setAnoFabricacao(e.target.value)}/></div>
+          <div><label>Quantidade de Portas: </label> <input type="text" placeholder="Informe a quantidade de portas" onChange={(e) => setQuantidadePortas(e.target.value)}/></div>
+          <div><label>Marca: </label> <input type="text" placeholder="Informe a marca" onChange={(e) => setMarca(e.target.value)}/></div>
         </Inputs>
         : 
         <Inputs>
-          <div><label>Modelo: </label> <input type="text" placeholder="Informe o modelo" /></div>
-          <div><label>Ano de fabricação: </label> <input type="text" placeholder="Informe o Ano de fabricação" /></div>
-          <div><label>Quantidade de Portas: </label> <input type="text" placeholder="Informe a quantidade de portas" /></div>
-          <div><label>Marca: </label> <input type="text" placeholder="Informe a marca" /></div>
-          <div><label>Rodas: </label> <input type="text" value="2"/></div>
-          <div><label>Passageiros: </label> <input type="text" placeholder="1 ou 2 passageiros" /></div>
+          <div><label>Modelo: </label> <input type="text" placeholder="Informe o modelo" onChange={(e) => setModelo(e.target.value)}/></div>
+          <div><label>Ano de fabricação: </label> <input type="text" placeholder="Informe o Ano de fabricação" onChange={(e) => setAnoFabricacao(e.target.value)} /></div>
+          <div><label>Marca: </label> <input type="text" placeholder="Informe a marca" onChange={(e) => setMarca(e.target.value)}/></div>
+          <div><label>Rodas: </label> <input type="text" onChange={(e) => setRodas(e.target.value)}/></div>
+          <div><label>Passageiros: </label> <input type="text" placeholder="1 ou 2 passageiros"  onChange={(e) => setPassageiro(e.target.value)}/></div>
         </Inputs>
         }
+
+        <div>
+        <Salvar id="salvar" onClick={handleSalvar}>Salvar</Salvar>
+        </div>
 
         {veiculo === "car" ?
         <TableCar>
@@ -110,16 +130,14 @@ export const Teste3 = () => {
           <div id="cabecalho">
             <p>Modelo</p>
             <p>Ano de Fabricação</p>
-            <p>Portas</p>
             <p>Marca</p>
             <p>Rodas</p>
             <p>Passageiros</p>
           </div>
           <div id="info">
-            <p>Vectra</p>
+            <p>CB</p>
             <p>2008</p>
-            <p>4</p>
-            <p>Chevrolet</p>
+            <p>Honda</p>
             <p>2</p>
             <p>2</p>
           </div>
@@ -128,9 +146,5 @@ export const Teste3 = () => {
       </Result3>
     </ContainerTeste3>
   )
-}
-
-function setVeiculo(arg0: string) {
-  throw new Error("Function not implemented.");
 }
 

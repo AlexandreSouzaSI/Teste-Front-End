@@ -56,6 +56,22 @@ export const Result3 = styled.div`
   }
 `
 
+export const Salvar = styled.button`
+    width: 200px;
+    height: 40px;
+    color: #fff;
+    margin-top: 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    justify-content: end;
+    background-color: #311847;
+
+    :active {
+      border-left: 2px;
+      border-top: 2px;
+    }
+`
+
 export const Inputs = styled.div`
   width: 94%;
   display: flex;

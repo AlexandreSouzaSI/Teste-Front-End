@@ -9,13 +9,14 @@ export const Teste1 = () => {
   const [number1, setNumber1] = useState("");
   const [number2, setNumber2] = useState("");
   const [result, setResult] = useState(0);
+  const [valores, setValores] = useState("")
   
+  valores.toString()
+  console.log(valores)
   
-
   async function HandleResult() {
 
-    console.log(typeof(number1))
-    
+    console.log("foi")
     const values = {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -26,9 +27,11 @@ export const Teste1 = () => {
     // @ts-ignore
     const response = await fetch("http://localhost:4000/test1", values);
     const data = await response.json();
-
-    console.log(data)
+    setValores(data)
   }
+  console.log(typeof(valores))
+  console.log(valores)
+
   
 
   return (
@@ -49,7 +52,7 @@ export const Teste1 = () => {
           <button onClick={HandleResult}>Resultado</button>
         </Inputs>
         <Resposta1>
-          
+          {valores}
         </Resposta1>
       </Resolucao1>
     </ContainerTeste1>

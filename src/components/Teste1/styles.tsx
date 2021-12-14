@@ -95,6 +95,8 @@ export const Inputs = styled.div`
 export const Resposta1 = styled.div`
   width: 93%;
   height: 50%;
+  padding: 20px;
+  font-size: 25px;
   margin-bottom: 100px;
   margin-top: 50px;
   display: flex;

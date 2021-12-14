@@ -1,8 +1,11 @@
-import { ContainerTeste4, Desafio4, Inputs, Result4 } from "./styles"
+import { CepInfo, ContainerTeste4, Desafio4, Inputs, Result4 } from "./styles"
 
 // @ts-ignore 
 import cep1 from '../../assets/cep.png'
 import { useState } from 'react';
+import { BuscarCepService, DataJson } from '../../services/buscarCep';
+
+
 
 export const Teste4 = () => {
   const [valor, setValor] = useState("")
@@ -10,29 +13,48 @@ export const Teste4 = () => {
   const [cepFinal, setCepFinal] = useState([])
 
   function handleAddCpf() {
-    // @ts-ignore 
-    cep.push(valor)
+    const copyCep = cep.slice()
+    copyCep.push(valor)
+    setCep(copyCep)
   }
 
   async function handleSearchCpf() {
+
+    // const values = {
+    //   method: "POST",
+    //   headers: { "Content-Type": "application/json" },
+    //   body: JSON.stringify({ valor: cep }),
+    //   withCredentials: true,
+    //   credentials: "include",
+    // };
+    // // @ts-ignore
+    // const response = await fetch("http://localhost:4000/test4", values);
+    // const data = await response.json();
+    // console.log(data)
+
     for(let i = 0; i < cep.length; i++){
 
       let val = cep[i];
+
 
       const options = {
           method: 'GET',
           mode: 'cors',
           cache: 'default'
       }
-      // @ts-ignore 
       fetch(`http://viacep.com.br/ws/${val}/json/`, options)
       .then(response => {response.json()
-          .then(data => setCepFinal(data))
+      .then( data => showData(data))
       })
-      .catch(e => console.log('Deu erro: '+ e.message))
+      .catch(e => console.log("Deu erro: "+ e.message))
+      
+      const showData = (result) => {
+              setCepFinal((state) => [...state, result])
+        }
+
+        setCep([])
+    }
   }
-  }
-  console.log(cepFinal)
   return (
     <ContainerTeste4>
       <Result4>
@@ -42,7 +64,7 @@ export const Teste4 = () => {
           <button onClick={handleAddCpf}>OK</button>
           
         </Inputs>
-        <div id="listaCpf">
+        <div id="listaCep">
           <div id="inputsCep">
             <input type="text" value={cep[0]} />
             <input type="text" value={cep[1]} />
@@ -52,15 +74,18 @@ export const Teste4 = () => {
             <button onClick={handleSearchCpf}>OK</button>
           </div>
           <div id="infoCep">
-            {/* {cepFinal.map((post) => (
-              // @ts-ignore 
-            <div key={post.cep}>
-              <label>Rua: {post.logradouro}</label>
-              <label>Bairro: {post.bairro}</label>
-              <label>Cidade: {post.localidade}</label>
-              <label>Estado: {post.uf}</label>
-            </div> 
-            ))} */}
+            {cepFinal.map(post => (
+              <div id="informacoes" key={post.cep}>
+                <label>Rua: </label>
+                <CepInfo>{post.logradouro}</CepInfo>
+                <label>Bairro: </label>
+                <CepInfo>{post.bairro}</CepInfo>
+                <label>Cidade: </label>
+                <CepInfo>{post.localidade}</CepInfo>
+                <label>UF: </label>
+                <CepInfo>{post.uf}</CepInfo>
+              </div>
+            ))}
           </div>
         </div>
       </Result4>
@@ -71,9 +96,5 @@ export const Teste4 = () => {
       </Desafio4>
     </ContainerTeste4>
   )
-}
-
-function setVeiculo(arg0: string) {
-  throw new Error("Function not implemented.");
 }
 

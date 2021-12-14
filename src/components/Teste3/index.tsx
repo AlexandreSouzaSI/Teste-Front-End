@@ -4,12 +4,13 @@ import { ContainerTeste3, Desafio3, Inputs, Result3, Salvar, TableCar } from "./
 import veiculo1 from '../../assets/veiculo.png'
 import { useState } from 'react';
 
-
 class Veiculo {
+  Tipo: string;
   Modelo?: string;
   Anofabricação?: string;
   Marca?: string;
-  constructor(Modelo: string, Anofabricação: string, Marca: string){
+  constructor(tipo: string, Modelo: string, Anofabricação: string, Marca: string){
+    this.Tipo =tipo;
     this.Marca = Marca;
     this.Anofabricação = Anofabricação;
     this.Modelo = Modelo
@@ -18,8 +19,9 @@ class Veiculo {
 
 class Carro extends Veiculo {
   QuantidadePortas?: string;
-  constructor(Modelo: string, Anofabricação: string, Marca: string, QuantidadePortas: string){
-    super(Modelo, Anofabricação, Marca)
+  constructor(tipo: string, Modelo: string, Anofabricação: string, Marca: string, QuantidadePortas: string){
+    super(tipo, Modelo, Anofabricação, Marca)
+    this.Tipo = tipo;
     this.QuantidadePortas = QuantidadePortas
   }
 }
@@ -27,8 +29,8 @@ class Carro extends Veiculo {
 class Moto extends Veiculo {
   Rodas?: string;
   QuantidadePassageiros?: string;
-  constructor(Modelo: string, Anofabricação: string, Marca: string, QuantidadePassageiros: string, Rodas: string){
-    super(Modelo, Anofabricação, Marca);
+  constructor(tipo: string, Modelo: string, Anofabricação: string, Marca: string, QuantidadePassageiros: string, Rodas: string){
+    super(tipo, Modelo, Anofabricação, Marca);
     this.QuantidadePassageiros = QuantidadePassageiros;
     this.Rodas = Rodas
   }
@@ -39,6 +41,7 @@ export const Teste3 = () => {
   const [veiculo, setVeiculo] = useState("car")
   const [moto, setMoto] = useState<Moto[]>([])
   const [car, setCar] = useState<Carro[]>([])
+  const [tipo, setTipo] = useState("")
   const [modelo, setModelo] = useState("")
   const [anoFabricacao, setAnoFabricacao] = useState("")
   const [marca, setMarca] = useState("")
@@ -46,29 +49,49 @@ export const Teste3 = () => {
   const [passageiro, setPassageiro] = useState("")
   const [quantidadePortas, setQuantidadePortas] = useState("")
   
-  function handleSalvar() {
+  async function handleSalvar() {
 
     if(veiculo === "car"){
-      const Carro = [
-        { "Modelo": modelo },
-        { "Marca": marca },
-        { "Anofabricação": anoFabricacao },
-        { "quantidadePortas": quantidadePortas },
-      ]
-      setCar(Carro)
+
+      setTipo("Carro")
+      const newCarro = new Carro(tipo ,modelo, anoFabricacao, marca, quantidadePortas)
+      
+      const values = {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ veiculo: newCarro }),
+        withCredentials: true,
+        credentials: "include",
+      };
+      // @ts-ignore
+      const response = await fetch("http://localhost:4000/test3", values);
+      const data = await response.json();
+      setCar(data)
       console.log(car)
+
     } else if (veiculo !== "car"){
-    const Veiculos = [
-      { "Modelo": modelo },
-      { "Marca": marca },
-      { "Anofabricação": anoFabricacao },
-      { "Rodas": rodas },
-      { "QuantidadePassageiros": passageiro }
-    ]
-    setMoto(Veiculos)
-    console.log(moto)
+      setTipo("Moto")
+      const newMoto = new Moto(tipo, modelo, anoFabricacao, marca, rodas, passageiro)
+
+      const values = {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ veiculo: newMoto }),
+        withCredentials: true,
+        credentials: "include",
+      };
+      // @ts-ignore
+      const response = await fetch("http://localhost:4000/test3", values);
+      const data = await response.json();
+      setMoto(data)
+      console.log(moto)
   }
+  
 }
+
+      
+console.log(car)
+console.log(moto)
 
   function handleCar() {
     setVeiculo("car")
@@ -118,12 +141,14 @@ export const Teste3 = () => {
             <p>Portas</p>
             <p>Marca</p>
           </div>
-          <div id="info">
-            <p>Vectra</p>
-            <p>2008</p>
-            <p>4</p>
-            <p>Chevrolet</p>
+          {/* {car.map(veiculo => (
+          <div id="info" key="">
+            <p>{veiculo.Modelo}</p>
+            <p>{veiculo.Anofabricação}</p>
+            <p>{veiculo.QuantidadePortas}</p>
+            <p>{veiculo.Marca}</p>
           </div>
+          ))} */}
         </TableCar>
         :
         <TableCar>

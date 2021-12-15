@@ -40,29 +40,29 @@ export const Teste2 = () => {
         </Inputs>
         <Resposta2>
             <InfoValores>
-              <Informacao>Valor da compra</Informacao> <Valores>-{valor1}</Valores>
+              <Informacao>Valor da compra</Informacao> <Valores>- R$ {valor1},00</Valores>
             </InfoValores>
 
             <InfoValores>
-              <Informacao>Valor pago</Informacao> <Valores>{valor2}</Valores>
+              <Informacao>Valor pago</Informacao> <Valores> R$ {valor2},00</Valores>
             </InfoValores>
 
             <InfoValores>
-              <Informacao>Valor do troco</Informacao> <Valores>{result}</Valores>
+              <Informacao>Valor do troco</Informacao> <Valores> R$ {result},00</Valores>
             </InfoValores>
 
             <h2>Voce recebera seu troco da seguinte forma</h2>
 
             <InfoValores>
-              <Informacao>Notas de R$100:</Informacao> <Valores>{troco[0]} </Valores>
+              <Informacao>Notas de R$100,00:</Informacao> <Valores>{troco[0]} </Valores>
             </InfoValores>
 
             <InfoValores>
-              <Informacao>Notas de R$10:</Informacao> <Valores>{troco[1]} </Valores>
+              <Informacao>Notas de R$10,00:</Informacao> <Valores> {troco[1]} </Valores>
             </InfoValores>
 
             <InfoValores>
-              <Informacao>Notas de R$1:</Informacao> <Valores>{troco[2]} </Valores>
+              <Informacao>Notas de R$1,00:</Informacao> <Valores> {troco[2]} </Valores>
             </InfoValores>
         </Resposta2>
         </Result2>

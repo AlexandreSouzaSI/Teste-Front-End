@@ -226,6 +226,7 @@ export const TableCar = styled.div`
       color: black;
       width: 25%;
       height: 100%;
+      padding-top: 2px;
 
       @media(max-width: 375px) {
       font-size: 10px;
@@ -240,7 +241,7 @@ export const TableCar = styled.div`
     flex-direction: row;
     justify-content: space-evenly;
     align-items: center;
-    border: 1px solid #2B4141;
+    border-bottom: 1px solid #2B4141;
     width: 100%;
     height: 7%;
 
@@ -249,12 +250,15 @@ export const TableCar = styled.div`
       color: black;
       width: 25%;
       height: 100%;
+      padding-top: 5px;
 
       @media(max-width: 375px) {
       font-size: 10px;
   }
 
-      border: 1px solid #2B4141;
+      border-bottom: 1px solid #2B4141;
+      border-right: 1px solid #2B4141;
+      border-left: 1px solid #2B4141;
     }
   }
 `

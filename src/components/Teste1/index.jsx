@@ -8,15 +8,12 @@ export const Teste1 = () => {
 
   const [number1, setNumber1] = useState("");
   const [number2, setNumber2] = useState("");
-  const [result, setResult] = useState(0);
   const [valores, setValores] = useState("")
   
   valores.toString()
-  console.log(valores)
   
   async function HandleResult() {
 
-    console.log("foi")
     const values = {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -29,10 +26,6 @@ export const Teste1 = () => {
     const data = await response.json();
     setValores(data)
   }
-  console.log(typeof(valores))
-  console.log(valores)
-
-  
 
   return (
     <ContainerTeste1>
@@ -45,8 +38,8 @@ export const Teste1 = () => {
       <Resolucao1>
         <span>Nesse desafio você escolhera 2 numeros, que serão usados como ponto inicial e final, no intervalo entre os 2 numeros, todos os Palíndromos serão mostrados.</span>
         <Inputs>
-          <input type="text" placeholder="Informe o primeiro numero" onChange={(e) => setNumber1(e.target.value)}/>
-          <input type="text" placeholder="Informe o segundo numero" onChange={(e) => setNumber2(e.target.value)}/>
+          <input type="text" placeholder="Primeiro numero" onChange={(e) => setNumber1(e.target.value)}/>
+          <input type="text" placeholder="Segundo numero" onChange={(e) => setNumber2(e.target.value)}/>
         </Inputs>
         <Inputs>
           <button onClick={HandleResult}>Resultado</button>

@@ -5,12 +5,12 @@ import veiculo1 from '../../assets/veiculo.png'
 import { useState } from 'react';
 
 class Veiculo {
-  Tipo: string;
+  id: number;
   Modelo?: string;
   Anofabricação?: string;
   Marca?: string;
-  constructor(tipo: string, Modelo: string, Anofabricação: string, Marca: string){
-    this.Tipo =tipo;
+  constructor(id: number, Modelo: string, Anofabricação: string, Marca: string){
+    this.id = id;
     this.Marca = Marca;
     this.Anofabricação = Anofabricação;
     this.Modelo = Modelo
@@ -19,9 +19,8 @@ class Veiculo {
 
 class Carro extends Veiculo {
   QuantidadePortas?: string;
-  constructor(tipo: string, Modelo: string, Anofabricação: string, Marca: string, QuantidadePortas: string){
-    super(tipo, Modelo, Anofabricação, Marca)
-    this.Tipo = tipo;
+  constructor(id: number, Modelo: string, Anofabricação: string, Marca: string, QuantidadePortas: string){
+    super(id, Modelo, Anofabricação, Marca)
     this.QuantidadePortas = QuantidadePortas
   }
 }
@@ -29,8 +28,8 @@ class Carro extends Veiculo {
 class Moto extends Veiculo {
   Rodas?: string;
   QuantidadePassageiros?: string;
-  constructor(tipo: string, Modelo: string, Anofabricação: string, Marca: string, QuantidadePassageiros: string, Rodas: string){
-    super(tipo, Modelo, Anofabricação, Marca);
+  constructor(id: number, Modelo: string, Anofabricação: string, Marca: string, QuantidadePassageiros: string, Rodas: string){
+    super(id, Modelo, Anofabricação, Marca);
     this.QuantidadePassageiros = QuantidadePassageiros;
     this.Rodas = Rodas
   }
@@ -41,8 +40,9 @@ export const Teste3 = () => {
   const [veiculo, setVeiculo] = useState("car")
   const [moto, setMoto] = useState<Moto[]>([])
   const [car, setCar] = useState<Carro[]>([])
-  const [tipo, setTipo] = useState("")
   const [modelo, setModelo] = useState("")
+  const [idCarro, setIdCarro] = useState(2)
+  const [idMoto, setIdMoto] = useState(1)
   const [anoFabricacao, setAnoFabricacao] = useState("")
   const [marca, setMarca] = useState("")
   const [rodas, setRodas] = useState("")
@@ -53,30 +53,41 @@ export const Teste3 = () => {
 
     if(veiculo === "car"){
 
-      setTipo("Carro")
-      const newCarro = new Carro(tipo ,modelo, anoFabricacao, marca, quantidadePortas)
+      if(modelo === "" || anoFabricacao === "" || marca === "" || quantidadePortas === ""){
+        return
+      }
+
+      setIdCarro(idCarro + 2)
+      
+      const newCarro = new Carro(idCarro, modelo, anoFabricacao, marca, quantidadePortas)
       
       const values = {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ veiculo: newCarro }),
+        body: JSON.stringify( newCarro ),
         withCredentials: true,
         credentials: "include",
       };
       // @ts-ignore
       const response = await fetch("http://localhost:4000/test3", values);
       const data = await response.json();
-      setCar(data)
-      console.log(car)
+      console.log(data)
+        setCar(data)
 
     } else if (veiculo !== "car"){
-      setTipo("Moto")
-      const newMoto = new Moto(tipo, modelo, anoFabricacao, marca, rodas, passageiro)
+
+      if(modelo === "" || anoFabricacao === "" || marca === "" || rodas === "" || passageiro === ""){
+        return
+      }
+
+      setIdMoto(idMoto + 2)
+
+      const newMoto = new Moto(idMoto, modelo, anoFabricacao, marca, rodas, passageiro)
 
       const values = {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ veiculo: newMoto }),
+        body: JSON.stringify( newMoto ),
         withCredentials: true,
         credentials: "include",
       };
@@ -84,21 +95,40 @@ export const Teste3 = () => {
       const response = await fetch("http://localhost:4000/test3", values);
       const data = await response.json();
       setMoto(data)
-      console.log(moto)
   }
   
 }
 
-      
-console.log(car)
-console.log(moto)
-
-  function handleCar() {
+  async function handleCar() {
     setVeiculo("car")
-  }
-  function handleMoto() {
+
+    const values = {
+      method: "GET",
+      headers: { "Content-Type": "application/json" },
+      withCredentials: true,
+      credentials: "include",
+    };
+    // @ts-ignore
+    const response = await fetch("http://localhost:4000/test3", values);
+    const data = await response.json();
+    setCar(data)
+    }
+
+  async function handleMoto() {
     setVeiculo("moto")
+
+    const values = {
+      method: "GET",
+      headers: { "Content-Type": "application/json" },
+      withCredentials: true,
+      credentials: "include",
+    };
+    // @ts-ignore
+    const response = await fetch("http://localhost:4000/test3", values);
+    const data = await response.json();
+      setMoto(data)
   }
+
 
   return (
     <ContainerTeste3>
@@ -114,58 +144,59 @@ console.log(moto)
         </div>
         {veiculo === "car" ? 
         <Inputs>
-          <div><label>Modelo: </label> <input type="text" placeholder="Informe o modelo" onChange={(e) => setModelo(e.target.value)}/></div>
-          <div><label>Ano de fabricação: </label> <input type="text" placeholder="Informe o Ano de fabricação" onChange={(e) => setAnoFabricacao(e.target.value)}/></div>
-          <div><label>Quantidade de Portas: </label> <input type="text" placeholder="Informe a quantidade de portas" onChange={(e) => setQuantidadePortas(e.target.value)}/></div>
-          <div><label>Marca: </label> <input type="text" placeholder="Informe a marca" onChange={(e) => setMarca(e.target.value)}/></div>
+          <div><label>Modelo: </label> <input type="text" placeholder="Modelo" onChange={(e) => setModelo(e.target.value)}/></div>
+          <div><label>Ano de fabricação: </label> <input type="text" placeholder="Ano fabricação" onChange={(e) => setAnoFabricacao(e.target.value)}/></div>
+          <div><label>Quantidade de Portas: </label> <input type="text" placeholder="Portas" onChange={(e) => setQuantidadePortas(e.target.value)}/></div>
+          <div><label>Marca: </label> <input type="text" placeholder="Marca" onChange={(e) => setMarca(e.target.value)}/></div>
         </Inputs>
         : 
         <Inputs>
-          <div><label>Modelo: </label> <input type="text" placeholder="Informe o modelo" onChange={(e) => setModelo(e.target.value)}/></div>
-          <div><label>Ano de fabricação: </label> <input type="text" placeholder="Informe o Ano de fabricação" onChange={(e) => setAnoFabricacao(e.target.value)} /></div>
-          <div><label>Marca: </label> <input type="text" placeholder="Informe a marca" onChange={(e) => setMarca(e.target.value)}/></div>
-          <div><label>Rodas: </label> <input type="text" onChange={(e) => setRodas(e.target.value)}/></div>
-          <div><label>Passageiros: </label> <input type="text" placeholder="1 ou 2 passageiros"  onChange={(e) => setPassageiro(e.target.value)}/></div>
+          <div><label>Modelo: </label> <input type="text" placeholder="Modelo" onChange={(e) => setModelo(e.target.value)}/></div>
+          <div><label>Ano de fabricação: </label> <input type="text" placeholder="Ano fabricação" onChange={(e) => setAnoFabricacao(e.target.value)} /></div>
+          <div><label>Marca: </label> <input type="text" placeholder="Marca" onChange={(e) => setMarca(e.target.value)}/></div>
+          <div><label>Rodas: </label> <input type="text" placeholder="Rodas" onChange={(e) => setRodas(e.target.value)}/></div>
+          <div><label>Passageiros: </label> <input type="text" placeholder="Passageiros"  onChange={(e) => setPassageiro(e.target.value)}/></div>
         </Inputs>
         }
 
         <div>
         <Salvar id="salvar" onClick={handleSalvar}>Salvar</Salvar>
         </div>
-
         {veiculo === "car" ?
         <TableCar>
           <div id="cabecalho">
             <p>Modelo</p>
-            <p>Ano de Fabricação</p>
+            <p>A.Fabricação</p>
             <p>Portas</p>
             <p>Marca</p>
           </div>
-          {/* {car.map(veiculo => (
-          <div id="info" key="">
-            <p>{veiculo.Modelo}</p>
-            <p>{veiculo.Anofabricação}</p>
-            <p>{veiculo.QuantidadePortas}</p>
-            <p>{veiculo.Marca}</p>
+          {car.map(veiculo => (
+          <div id="info" key={veiculo.id}>
+              <p>{veiculo.Modelo}</p>
+              <p>{veiculo.Anofabricação}</p>
+              <p>{veiculo.QuantidadePortas}</p>
+              <p>{veiculo.Marca}</p>
           </div>
-          ))} */}
+          ))}
         </TableCar>
         :
         <TableCar>
           <div id="cabecalho">
             <p>Modelo</p>
-            <p>Ano de Fabricação</p>
+            <p>A.Fabricação</p>
             <p>Marca</p>
             <p>Rodas</p>
             <p>Passageiros</p>
           </div>
-          <div id="info">
-            <p>CB</p>
-            <p>2008</p>
-            <p>Honda</p>
-            <p>2</p>
-            <p>2</p>
-          </div>
+          {moto.map(moto => (
+            <div id="info" key={moto.id}>
+              <p>{moto.Modelo}</p>
+              <p>{moto.Anofabricação}</p>
+              <p>{moto.Marca}</p>
+              <p>{moto.Rodas}</p>
+              <p>{moto.QuantidadePassageiros}</p>
+            </div>
+            ))}
         </TableCar>
         } 
       </Result3>

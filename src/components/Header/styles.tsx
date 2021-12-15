@@ -34,5 +34,9 @@ export const Heade = styled.div`
     @media (max-width: 500px) {
       font-size: 16px;
     }
+    @media (max-width: 375px) {
+      font-size: 12px;
+    }
+    
   }
 `

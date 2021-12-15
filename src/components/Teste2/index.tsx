@@ -32,8 +32,8 @@ export const Teste2 = () => {
       <Result2>
         <span>Vamos fazer uma compra, por favor, informe o valor da compra, e o valor que esta pagando, para que possamos saber o troco.</span>
       <Inputs>
-          <input type="text" placeholder="Informe o valor da compra" onChange={(e) => setValor1(e.target.value)}/>
-          <input type="text" placeholder="Informe o valor pago" onChange={(e) => setValor2(e.target.value)}/>
+          <input type="text" placeholder="Valor da compra" onChange={(e) => setValor1(e.target.value)}/>
+          <input type="text" placeholder="Valor pago" onChange={(e) => setValor2(e.target.value)}/>
         </Inputs>
         <Inputs>
           <button onClick={HandleResult}>Resultado</button>

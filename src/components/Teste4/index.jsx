@@ -3,8 +3,6 @@ import { CepInfo, ContainerTeste4, Desafio4, Inputs, Result4 } from "./styles"
 // @ts-ignore 
 import cep1 from '../../assets/cep.png'
 import { useState } from 'react';
-import { BuscarCepService, DataJson } from '../../services/buscarCep';
-
 
 
 export const Teste4 = () => {
@@ -19,18 +17,6 @@ export const Teste4 = () => {
   }
 
   async function handleSearchCpf() {
-
-    // const values = {
-    //   method: "POST",
-    //   headers: { "Content-Type": "application/json" },
-    //   body: JSON.stringify({ valor: cep }),
-    //   withCredentials: true,
-    //   credentials: "include",
-    // };
-    // // @ts-ignore
-    // const response = await fetch("http://localhost:4000/test4", values);
-    // const data = await response.json();
-    // console.log(data)
 
     for(let i = 0; i < cep.length; i++){
 
@@ -55,6 +41,7 @@ export const Teste4 = () => {
         setCep([])
     }
   }
+
   return (
     <ContainerTeste4>
       <Result4>

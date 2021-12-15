@@ -8,6 +8,10 @@ export const ContainerTeste3 = styled.div`
   align-items: center;
   border-bottom: 1px solid #f1f1f1;
   margin-top: 80px;
+
+  @media(max-width: 375px) {
+      margin-top: -100px;
+  }
 `
 
 export const Result3 = styled.div`
@@ -20,6 +24,7 @@ export const Result3 = styled.div`
   flex-direction: column;
   justify-content: space-evenly;
 
+
   span {
     width: 90%;
     font-size: 30px;
@@ -27,6 +32,11 @@ export const Result3 = styled.div`
     padding: 20px;
     border-radius: 5px;
     border: 1px solid #e0e0e0;
+
+    @media(max-width: 375px) {
+      font-size: 14px;
+      margin-bottom: 5px;
+  }
   }
 
   button {
@@ -38,6 +48,13 @@ export const Result3 = styled.div`
     cursor: pointer;
     justify-content: center;
     background-color: #311847;
+
+    @media(max-width: 375px) {
+      font-size: 12px;
+      margin-left: 10px;
+      width: 100px;
+      height: 30px;
+  }
 
     :active {
       border-left: 2px;
@@ -52,6 +69,10 @@ export const Result3 = styled.div`
 
     button {
       font-size: 20px;
+
+      @media(max-width: 375px) {
+      font-size: 12px;
+  }
     }
   }
 `
@@ -66,6 +87,12 @@ export const Salvar = styled.button`
     justify-content: end;
     background-color: #311847;
 
+    @media(max-width: 375px) {
+      font-size: 12px;
+      width: 100px;
+      height: 30px;
+  }
+
     :active {
       border-left: 2px;
       border-top: 2px;
@@ -78,6 +105,12 @@ export const Inputs = styled.div`
   flex-direction: column;
   margin-top: 40px;
 
+  @media(max-width: 375px) {
+      font-size: 12px;
+      margin-top: 10px;
+      width: 100%;
+  }
+
   div {
     display: flex;
     flex-direction: row;
@@ -89,6 +122,14 @@ export const Inputs = styled.div`
     font-size: 25px;
     text-align: start;
     font-family: 'Times New Roman', serif;
+
+    @media(max-width: 375px) {
+      font-size: 12px;
+      width: 120px;
+      margin-bottom: 5px;
+      margin-right: 5px;
+      margin-left: 12px;
+  }
   }
 
   input {
@@ -98,6 +139,13 @@ export const Inputs = styled.div`
     justify-content: center;
     text-align: center;
     border-radius: 5px 10px;
+
+    
+    @media(max-width: 375px) {
+     width: 60%;
+     height: 90%;
+     margin-bottom: 20px;
+  }
     
     ::placeholder {
       text-align: center;
@@ -116,18 +164,33 @@ export const Desafio3 = styled.div`
   h1 {
     margin-top: 200px;
     font-size: 100px;
+
+    @media(max-width: 375px) {
+      font-size: 18px;
+      margin-bottom: 20px;
+      margin-top: 50px;
+  }
   }
 
   p {
     font-size: 30px;
     margin-left: 110px;
     width: 70%;
+
+    @media(max-width: 375px) {
+      font-size: 12px;
+      margin-left: 20px;
+  }
   }
 
   img {
     width: 50%;
     height: 40%;
     margin-left: 180px;
+
+    @media(max-width: 375px) {
+      display: none;
+  }
   }
 `
 
@@ -138,6 +201,12 @@ export const TableCar = styled.div`
   margin-top: 50px;
   flex-direction: column;
 
+  @media(max-width: 375px) {
+    width: 100%;
+    height: 100%;
+    display: flex;
+  }
+
   div#cabecalho {
     display: flex;
     flex-direction: row;
@@ -147,10 +216,20 @@ export const TableCar = styled.div`
     width: 100%;
     height: 7%;
 
+    @media(max-width: 375px) {
+      width: 100%;
+      height: 7%;
+  }
+
     p {
-      font-size: 24px;
+      font-size: 16px;
+      color: black;
       width: 25%;
       height: 100%;
+
+      @media(max-width: 375px) {
+      font-size: 10px;
+  }
 
       border: 1px solid #2B4141;
     }
@@ -166,9 +245,14 @@ export const TableCar = styled.div`
     height: 7%;
 
     p {
-      font-size: 24px;
+      font-size: 16px;
+      color: black;
       width: 25%;
       height: 100%;
+
+      @media(max-width: 375px) {
+      font-size: 10px;
+  }
 
       border: 1px solid #2B4141;
     }

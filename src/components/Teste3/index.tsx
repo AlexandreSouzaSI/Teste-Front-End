@@ -60,6 +60,12 @@ export const Teste3 = () => {
       setIdCarro(idCarro + 2)
       
       const newCarro = new Carro(idCarro, modelo, anoFabricacao, marca, quantidadePortas)
+      setTimeout(() => {
+        setModelo("")
+        setAnoFabricacao("")
+        setMarca("")
+        setQuantidadePortas("")
+      }, 2000)
       
       const values = {
         method: "POST",
@@ -72,7 +78,8 @@ export const Teste3 = () => {
       const response = await fetch("http://localhost:4000/test3", values);
       const data = await response.json();
       console.log(data)
-        setCar(data)
+      setCar(data)
+
 
     } else if (veiculo !== "car"){
 
@@ -83,6 +90,13 @@ export const Teste3 = () => {
       setIdMoto(idMoto + 2)
 
       const newMoto = new Moto(idMoto, modelo, anoFabricacao, marca, rodas, passageiro)
+      setTimeout(() => {
+        setModelo("")
+        setAnoFabricacao("")
+        setMarca("")
+        setRodas("")
+        setPassageiro("")
+      }, 2000)
 
       const values = {
         method: "POST",
@@ -144,18 +158,18 @@ export const Teste3 = () => {
         </div>
         {veiculo === "car" ? 
         <Inputs>
-          <div><label>Modelo: </label> <input type="text" placeholder="Modelo" onChange={(e) => setModelo(e.target.value)}/></div>
-          <div><label>Ano de fabricação: </label> <input type="text" placeholder="Ano fabricação" onChange={(e) => setAnoFabricacao(e.target.value)}/></div>
-          <div><label>Quantidade de Portas: </label> <input type="text" placeholder="Portas" onChange={(e) => setQuantidadePortas(e.target.value)}/></div>
-          <div><label>Marca: </label> <input type="text" placeholder="Marca" onChange={(e) => setMarca(e.target.value)}/></div>
+          <div><label>Modelo: </label> <input type="text" placeholder="Modelo" value={modelo} onChange={(e) => setModelo(e.target.value)}/></div>
+          <div><label>Ano de fabricação: </label> <input type="text" placeholder="Ano fabricação" value={anoFabricacao} onChange={(e) => setAnoFabricacao(e.target.value)}/></div>
+          <div><label>Quantidade de Portas: </label> <input type="text" placeholder="Portas" value={quantidadePortas} onChange={(e) => setQuantidadePortas(e.target.value)}/></div>
+          <div><label>Marca: </label> <input type="text" placeholder="Marca" value={marca} onChange={(e) => setMarca(e.target.value)}/></div>
         </Inputs>
         : 
         <Inputs>
-          <div><label>Modelo: </label> <input type="text" placeholder="Modelo" onChange={(e) => setModelo(e.target.value)}/></div>
-          <div><label>Ano de fabricação: </label> <input type="text" placeholder="Ano fabricação" onChange={(e) => setAnoFabricacao(e.target.value)} /></div>
-          <div><label>Marca: </label> <input type="text" placeholder="Marca" onChange={(e) => setMarca(e.target.value)}/></div>
-          <div><label>Rodas: </label> <input type="text" placeholder="Rodas" onChange={(e) => setRodas(e.target.value)}/></div>
-          <div><label>Passageiros: </label> <input type="text" placeholder="Passageiros"  onChange={(e) => setPassageiro(e.target.value)}/></div>
+          <div><label>Modelo: </label> <input type="text" placeholder="Modelo" value={modelo} onChange={(e) => setModelo(e.target.value)}/></div>
+          <div><label>Ano de fabricação: </label> <input type="text" placeholder="Ano fabricação" value={anoFabricacao} onChange={(e) => setAnoFabricacao(e.target.value)} /></div>
+          <div><label>Marca: </label> <input type="text" placeholder="Marca" value={marca} onChange={(e) => setMarca(e.target.value)}/></div>
+          <div><label>Rodas: </label> <input type="text" placeholder="Rodas" value={rodas} onChange={(e) => setRodas(e.target.value)}/></div>
+          <div><label>Passageiros: </label> <input type="text" placeholder="Passageiros" value={passageiro}  onChange={(e) => setPassageiro(e.target.value)}/></div>
         </Inputs>
         }
 

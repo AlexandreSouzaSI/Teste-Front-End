@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { color, ColorProps, fontSize, FontSizeProps, layout, LayoutProps, margin, MarginProps, textAlign, TextAlignProps } from 'styled-system';
 
 export const ContainerTeste2 = styled.div`
   width: 100%;
@@ -124,10 +125,17 @@ export const InfoValores = styled.div`
   
 `
 
-export const Informacao = styled.p`
+type Font = FontSizeProps & LayoutProps & TextAlignProps & MarginProps & ColorProps;
+
+export const Informacao = styled.p<Font>`
   width: 50%;
   font-size: 25px;
   align-items: center;
+  ${fontSize}
+  ${layout}
+  ${textAlign}
+  ${margin}
+  ${color}
 
   @media(max-width: 375px) {
       font-size: 12px;

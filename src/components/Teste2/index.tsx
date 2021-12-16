@@ -10,6 +10,7 @@ export const Teste2 = () => {
   const [valor2, setValor2] = useState("")
   const [result, setResult] = useState(0)
   const [troco, setTroco] = useState([])
+  const [erro, setErro] = useState("")
 
   async function HandleResult() {
 
@@ -24,7 +25,13 @@ export const Teste2 = () => {
     // @ts-ignore
     const response = await fetch("http://localhost:4000/test2", values);
     const data = await response.json();
-    setTroco(data)
+    if(typeof data === "string"){
+      setErro(data)
+      setTroco([])
+    } else {
+      setTroco(data)
+      setErro("")
+    }
   }
 
   return (
@@ -38,6 +45,7 @@ export const Teste2 = () => {
         <Inputs>
           <button onClick={HandleResult}>Resultado</button>
         </Inputs>
+        <Informacao fontSize={22} width={1050} textAlign={"center"} marginTop={20} marginBottom={-20} color={"red"}>{erro}</Informacao>
         <Resposta2>
             <InfoValores>
               <Informacao>Valor da compra</Informacao> <Valores>- R$ {valor1},00</Valores>
